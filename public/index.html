@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Embed Component</title>
+  <h1 style="text-align: center;">YouTube Component</h1>
+  <style>
+    /* Remove default margins and ensure full height */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    /* Center contents inside the container */
+    #elm-container {
+      display: flex;
+      justify-content: center;  /* centers horizontally */
+      align-items: center;      /* centers vertically */
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="elm-container"></div>
+  <script src="/elm.js"></script>
+  
+  <script>
+    Elm.YouTubeEmbed.embed(document.getElementById("elm-container"));
+  </script>
+  
+</body>
+</html>

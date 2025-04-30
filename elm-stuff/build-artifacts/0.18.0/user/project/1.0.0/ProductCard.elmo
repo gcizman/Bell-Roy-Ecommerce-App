@@ -1,0 +1,247 @@
+var _user$project$ProductCard$Offer = F4(
+	function (a, b, c, d) {
+		return {priceCurrency: a, price: b, availability: c, url: d};
+	});
+var _user$project$ProductCard$offerDecoder = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_user$project$ProductCard$Offer,
+	A2(_elm_lang$core$Json_Decode$field, 'priceCurrency', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'price', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'availability', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string));
+var _user$project$ProductCard$Product = F5(
+	function (a, b, c, d, e) {
+		return {name: a, image: b, description: c, sku: d, offers: e};
+	});
+var _user$project$ProductCard$productDecoder = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_user$project$ProductCard$Product,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'image',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(_elm_lang$core$Json_Decode$field, 'description', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'sku', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'offers', _user$project$ProductCard$offerDecoder));
+var _user$project$ProductCard$Model = F2(
+	function (a, b) {
+		return {product: a, error: b};
+	});
+var _user$project$ProductCard$AddToCart = {ctor: 'AddToCart'};
+var _user$project$ProductCard$productView = function (product) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('product-card'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: function () {
+				var _p0 = product.image;
+				if (_p0.ctor === '::') {
+					return A2(
+						_elm_lang$html$Html$img,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$src(_p0._0),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('product-card__image'),
+								_1: {ctor: '[]'}
+							}
+						},
+						{ctor: '[]'});
+				} else {
+					return _elm_lang$html$Html$text('');
+				}
+			}(),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h2,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('product-card__title'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(product.name),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$p,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('product-card__description'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(product.description),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('product-card__sku'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(_elm_lang$core$Basics_ops['++'], 'SKU: ', product.sku)),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('product-card__price'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											product.offers.priceCurrency,
+											A2(_elm_lang$core$Basics_ops['++'], ' ', product.offers.price))),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$p,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('product-card__availability'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(product.offers.availability),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('product-card__button'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_user$project$ProductCard$AddToCart),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Add to Cart'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$ProductCard$view = function (model) {
+	var _p1 = model.product;
+	if (_p1.ctor === 'Just') {
+		return _user$project$ProductCard$productView(_p1._0);
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('product-card product-card--loading'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('Loading Product...'),
+				_1: {ctor: '[]'}
+			});
+	}
+};
+var _user$project$ProductCard$FetchProductError = function (a) {
+	return {ctor: 'FetchProductError', _0: a};
+};
+var _user$project$ProductCard$FetchProductSuccess = function (a) {
+	return {ctor: 'FetchProductSuccess', _0: a};
+};
+var _user$project$ProductCard$handleHttpResponse = function (result) {
+	var _p2 = result;
+	if (_p2.ctor === 'Ok') {
+		return _user$project$ProductCard$FetchProductSuccess(_p2._0);
+	} else {
+		return _user$project$ProductCard$FetchProductError('Failed to fetch product data');
+	}
+};
+var _user$project$ProductCard$getProduct = A2(
+	_elm_lang$http$Http$send,
+	_user$project$ProductCard$handleHttpResponse,
+	A2(
+		_elm_lang$http$Http$get,
+		'https://api.psrestful.com/v100/suppliers/BELLROY/sellable-product-ids/123',
+		A2(_elm_lang$core$Json_Decode$field, 'Product', _user$project$ProductCard$productDecoder)));
+var _user$project$ProductCard$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		switch (_p3.ctor) {
+			case 'FetchProduct':
+				return {ctor: '_Tuple2', _0: model, _1: _user$project$ProductCard$getProduct};
+			case 'FetchProductSuccess':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							product: _elm_lang$core$Maybe$Just(_p3._0),
+							error: _elm_lang$core$Maybe$Nothing
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'FetchProductError':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							error: _elm_lang$core$Maybe$Just(_p3._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _user$project$ProductCard$main = _elm_lang$html$Html$program(
+	{
+		init: {
+			ctor: '_Tuple2',
+			_0: {product: _elm_lang$core$Maybe$Nothing, error: _elm_lang$core$Maybe$Nothing},
+			_1: _user$project$ProductCard$getProduct
+		},
+		update: _user$project$ProductCard$update,
+		view: _user$project$ProductCard$view,
+		subscriptions: function (_p4) {
+			return _elm_lang$core$Platform_Sub$none;
+		}
+	})();
+var _user$project$ProductCard$FetchProduct = {ctor: 'FetchProduct'};
